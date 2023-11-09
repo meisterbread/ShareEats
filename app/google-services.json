@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "762111427899",
+    "project_id": "shareeats-b2552",
+    "storage_bucket": "shareeats-b2552.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:762111427899:android:8af779799431d96609e31e",
+        "android_client_info": {
+          "package_name": "com.example.shareeats"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0-qohCTta8K4J4boSp5_1FNraFt8sDSg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
