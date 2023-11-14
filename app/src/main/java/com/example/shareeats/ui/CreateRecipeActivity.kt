@@ -1,5 +1,7 @@
 package com.example.shareeats.ui
 
+import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.shareeats.R
@@ -11,11 +13,20 @@ class CreateRecipeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityCreateRecipeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        with(binding){
+        binding.btnCancel.setOnClickListener{
+
+            MainActivity.launch(this@CreateRecipeActivity)
+            finish()
 
         }
+
+    }
+
+    companion object {
+        fun launch(activity : Activity) = activity.startActivity(Intent(activity, CreateRecipeActivity::class.java))
     }
 }

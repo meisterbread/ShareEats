@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.SplashActivity"
-    android:background="@color/secondary">
+    android:background="@color/base">
 
 
     <ImageView
         android:id="@+id/ivLogo"
-        android:layout_width="290dp"
-        android:layout_height="587dp"
+        android:layout_width="174dp"
+        android:layout_height="161dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
