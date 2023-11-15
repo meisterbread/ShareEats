@@ -53,6 +53,9 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
 
+    implementation ("de.hdodenhof:circleimageview:3.1.0")
+
+
     implementation ("com.firebaseui:firebase-ui-auth:7.2.0")
 
     implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
@@ -61,5 +64,7 @@ dependencies {
     implementation("com.google.firebase:firebase-database-ktx")
 
     implementation("androidx.fragment:fragment-ktx:1.5.7")
+    implementation("androidx.cardview:cardview:1.0.0")
+
 
 }
