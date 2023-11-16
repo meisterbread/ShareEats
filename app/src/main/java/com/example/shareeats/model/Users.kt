@@ -1,6 +1,9 @@
 package com.example.shareeats.model
 
 data class Users(
-    val name: String? = null,
-    val email: String? = null,
+    var id : String? = null,
+    var imageURL : String? = null,
+    var name : String? = null,
+    var email : String? = null,
+    var bio : String? = null
 )

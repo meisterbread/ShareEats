@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/base"
     tools:context=".ui.ProfileActivity">
 
     <androidx.cardview.widget.CardView
@@ -14,7 +15,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:scaleType="centerCrop"
-        app:cardBackgroundColor="@color/base"
+        app:cardBackgroundColor="@color/primary"
         app:cardCornerRadius="16dp"
         app:layout_constraintTop_toTopOf="parent"
         >
@@ -25,15 +26,15 @@
             android:layout_height="match_parent"
             android:padding="16dp">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/iv_profile"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="8dp"
-            android:src="@drawable/user_default"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_profile"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/user_default"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
             <TextView
                 android:id="@+id/name_tv"
@@ -82,7 +83,7 @@
         android:layout_marginTop="48dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        app:cardBackgroundColor="@color/base"
+        app:cardBackgroundColor="@color/primary"
         app:cardCornerRadius="16dp"
         app:layout_constraintTop_toBottomOf="@id/bio_cv"
         >
@@ -169,6 +170,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="8dp"
+        android:backgroundTint="@color/secondary"
         android:text="EDIT PROFILE"
         app:layout_constraintBottom_toTopOf="@id/logout_btn"
         />
@@ -180,6 +182,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="8dp"
+        android:backgroundTint="@color/secondary"
         android:text="LOG OUT"
         app:layout_constraintBottom_toBottomOf="parent"
         />

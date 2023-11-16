@@ -2,14 +2,20 @@ package com.example.shareeats.ui
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.drawable.BitmapDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.result.ActivityResultCallback
+import androidx.activity.result.contract.ActivityResultContracts
 import com.example.shareeats.R
 import com.example.shareeats.databinding.ActivitySignupBinding
 import com.example.shareeats.states.AuthenticationStates
 import com.example.shareeats.viewmodel.AuthenticationViewModel
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import java.io.ByteArrayOutputStream
 
 class SignupActivity : AppCompatActivity() {
 
@@ -24,7 +30,9 @@ class SignupActivity : AppCompatActivity() {
 
         viewModel = AuthenticationViewModel()
         viewModel.getStates().observe(this@SignupActivity) {
+
             handleState(it)
+
         }
 
         binding.btnSignup.setOnClickListener {
@@ -34,14 +42,43 @@ class SignupActivity : AppCompatActivity() {
             )
         }
 
+        val galleryIntentLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult(), ActivityResultCallback {
+            if(it.resultCode == RESULT_OK){
+                val imageUri = it.data?.data
+                val imageStream = imageUri?.let { it1 -> contentResolver.openInputStream(it1) }
+                val photo = BitmapFactory.decodeStream(imageStream)
+                binding.ivAddImage.setImageBitmap(photo)
+            }
+        })
+
+        binding.ivAddImage.setOnClickListener {
+            val intent = Intent(Intent.ACTION_PICK)
+            intent.type = "image/*"
+            galleryIntentLauncher.launch(intent)
+        }
+
     }
 
     private fun handleState(state : AuthenticationStates) {
         when(state) {
             is AuthenticationStates.SignedUp -> auth.currentUser?.let {
+
+                if (binding.ivAddImage != null){
+
+                    binding.ivAddImage.setImageResource(R.drawable.user_default)
+
+                }
+                    val bitmap = (binding.ivAddImage.drawable as BitmapDrawable).bitmap
+                    val baos = ByteArrayOutputStream()
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+
+
                 viewModel.createUserRecord(
+                    auth.currentUser?.uid.toString(),
+                    baos.toByteArray(),
                     binding.tieName.text.toString(),
                     binding.tieEmail.text.toString(),
+                    binding.tieBio.text.toString()
                 )
             }
 

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/linear_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="@dimen/_15sdp"
+        android:gravity="center_vertical"
+        android:background="@color/primary">
+
+        <ImageView
+            android:id="@+id/imgRecipe"
+            android:layout_width="250dp"
+            android:layout_height="122dp"
+            android:layout_weight="1"
+            android:src="@drawable/baseline_image_24" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:weightSum="3"
+            android:orientation="vertical"
+            android:layout_margin="10dp">
+
+            <TextView
+                android:id="@+id/tv_recipe_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Fried Chicken"
+                android:textSize="30dp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/tv_cooking_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cooking time : 10 mins"
+                android:textSize="15dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/tv_created_by"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Created by : Jeremaiah Mata"
+                android:textSize="15dp"
+                android:layout_weight="1"
+                android:layout_marginTop="@dimen/_10sdp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

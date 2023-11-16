@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.gms.google-services")
+    id ("kotlin-parcelize")
 }
 
 android {
@@ -62,9 +63,22 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.firebase:firebase-auth-ktx")
     implementation("com.google.firebase:firebase-database-ktx")
+    implementation("com.google.firebase:firebase-storage-ktx")
+    implementation ("com.firebaseui:firebase-ui-storage:7.2.0")
 
     implementation("androidx.fragment:fragment-ktx:1.5.7")
     implementation("androidx.cardview:cardview:1.0.0")
 
+
+
+    implementation ("com.intuit.sdp:sdp-android:1.0.6")
+    implementation ("com.intuit.ssp:ssp-android:1.0.6")
+
+    implementation ("pl.droidsonroids.gif:android-gif-drawable:1.2.17")
+
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.3.0")
+
+    implementation ("com.github.bumptech.glide:glide:4.12.0")
 
 }

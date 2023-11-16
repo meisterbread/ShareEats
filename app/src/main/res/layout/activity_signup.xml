@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/base"
     tools:context=".ui.SignupActivity">
 
     <TextView
         android:id="@+id/tv_header"
         android:fontFamily="@font/montserrat_bold"
-        android:textSize="24dp"
+        android:textSize="32dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -28,6 +29,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_header">
 
+        <ImageView
+            android:id="@+id/ivAddImage"
+            android:layout_width="match_parent"
+            android:layout_height="189dp"
+            android:src="@drawable/baseline_image_24"/>
+
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -42,11 +49,15 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tie_bio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Bio" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -84,6 +95,9 @@
         android:layout_height="wrap_content"
         android:layout_margin="32dp"
         android:text="Sign up"
+        android:fontFamily="@font/montserrat_bold"
+        android:textColor="@color/secondary"
+        android:backgroundTint="@color/primary"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

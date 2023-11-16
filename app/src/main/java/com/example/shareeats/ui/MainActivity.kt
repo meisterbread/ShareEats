@@ -4,53 +4,34 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
-import com.example.shareeats.R
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.shareeats.databinding.ActivityMainBinding
-import com.example.shareeats.states.AuthenticationStates
-import com.example.shareeats.ui.fragments.FavoritesFragment
-import com.example.shareeats.ui.fragments.HomeFragment
-import com.example.shareeats.ui.fragments.SearchFragment
-import com.example.shareeats.viewmodel.AuthenticationViewModel
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.example.shareeats.states.HomeState
+import com.example.shareeats.ui.adapters.HomeAdapter
+import com.example.shareeats.viewmodel.HomeViewModel
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityMainBinding
-    private lateinit var viewmodel : AuthenticationViewModel
+    private lateinit var adapters: HomeAdapter
+    private lateinit var mainViewModel : HomeViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        replaceFragment(HomeFragment.newInstance())
+        binding.recylerviewHome.layoutManager = LinearLayoutManager(this)
 
-        binding.bottomNavigation.setOnItemSelectedListener {
-            when(it.itemId){
 
-                R.id.homeFragment -> {
 
-                    replaceFragment(HomeFragment.newInstance())
+        mainViewModel = HomeViewModel()
+        mainViewModel.getStates().observe(this@MainActivity) {
 
-                    true
-                }
-                R.id.favoritesFragment -> {
+            handleState(it)
 
-                    replaceFragment(FavoritesFragment.newInstance())
-
-                    true
-                }
-                R.id.searchFragment ->{
-
-                    replaceFragment(SearchFragment.newInstance())
-
-                    true
-                }
-
-                else -> {false}
-            }
         }
+
+
 
         binding.btnImg.setOnClickListener {
 
@@ -58,46 +39,36 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        viewmodel = AuthenticationViewModel()
-        viewmodel.getStates().observe(this@MainActivity) {
-            handleState(it)
+        binding.imgProfile.setOnClickListener {
+
+            ProfileActivity.launch(this@MainActivity)
+
         }
 
-        viewmodel.getUserProfile()
+
 
     }
 
-    private fun handleState(state : AuthenticationStates) {
+    private fun handleState(it: HomeState) {
 
-        when(state) {
-            is AuthenticationStates.Default -> {
-            }
-            AuthenticationStates.Error -> {
+        when(it) {
+            is HomeState.Default -> {
 
+                adapters = HomeAdapter(this, it.data)
+                binding.recylerviewHome.adapter = adapters
+                binding.tvSubheader.text = "What will you cook, ${it.userInfo?.name}?"
             }
-            AuthenticationStates.LogOut -> {
-                SigninActivity.launch(this@MainActivity)
-                finish()
-            }
-            AuthenticationStates.UserDeleted -> {
-                SigninActivity.launch(this@MainActivity)
-                finish()
-            }
-            AuthenticationStates.VerificationEmailSent -> {
+
+
+
+            HomeState.Error -> {
 
             }
+
             else -> {}
         }
     }
 
-    private fun replaceFragment(fragment : Fragment){
-
-        val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.host_fragment, fragment)
-        fragmentTransaction.commit()
-
-    }
 
     companion object {
         fun launch(activity : Activity) = activity.startActivity(Intent(activity, MainActivity::class.java))
