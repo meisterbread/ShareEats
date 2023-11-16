@@ -13,6 +13,7 @@ import com.example.shareeats.model.Users
 import com.example.shareeats.states.HomeState
 import com.example.shareeats.ui.CreateRecipeActivity
 import com.example.shareeats.ui.MainActivity
+import com.example.shareeats.ui.RecipeDetailsActivity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -23,47 +24,39 @@ import com.google.firebase.storage.ktx.storage
 
 
 class HomeAdapter(private val context: MainActivity, private var recipeList: ArrayList<Recipe> )
-    : RecyclerView.Adapter<HomeAdapter.ViewHolder>() { // - This line is an interface. Click on the "StudentsAdapters" class name and implement all the methods of the interface.
+    : RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val binding = RecipeHomeListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): ViewHolder { // binibigyan ng relationship yung adapter doon sa UI na ginawa mo per each item (item_list)
-        val binding =
-            RecipeHomeListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding, context)
+
     }
 
-    override fun getItemCount(): Int { // Ilan ang items sa list natin
+    override fun getItemCount(): Int {
 
         return recipeList.size
 
     }
 
-    override fun onBindViewHolder(
-        holder: ViewHolder,
-        position: Int
-    ) { // nagbibind ng list to each item
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        recipeList[position].let { // gets the position (the position of the list) binds it to the text views depending on the position.
+        recipeList[position].let {
 
             holder.bind(
                 it,
                 position
-            ) // calling of function bind in class ViewHolder to perform the binding
+            )
 
         }
 
     }
 
+
     class ViewHolder(val binding: RecipeHomeListBinding, val context: Context) :
         RecyclerView.ViewHolder(binding.root) {
 
-        //dito magbibind ng mga views natin
-
         fun bind(recipe: Recipe, position: Int) {
-            // it sets the data to the text views and image views on EACH ITEM (DEPENDS ON POSITION).
 
             Glide.with(context)
                 .load(recipe.imageUrl)
@@ -80,11 +73,7 @@ class HomeAdapter(private val context: MainActivity, private var recipeList: Arr
 
             val objectListener = object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    //snapshot - object that handles the current data from the db
-                    //since snapshot will handle a list, it needs to loop through each record it will retrieve
-                    //and give to our array list (contactList)
 
-                    //needs for loop
 
 
                     val userInfo = snapshot.getValue<Users>()
@@ -92,7 +81,6 @@ class HomeAdapter(private val context: MainActivity, private var recipeList: Arr
 
                 }
 
-                //after retrieving the record, the state will be default
 
 
                 override fun onCancelled(error: DatabaseError) {
@@ -106,15 +94,38 @@ class HomeAdapter(private val context: MainActivity, private var recipeList: Arr
                 .child(creatorID)
                 .addListenerForSingleValueEvent(objectListener)
 
+
+
             binding.linearParent.setOnClickListener {
 
-//                val intent = Intent(context, CreateRecipeActivity::class.java)
-//                intent.putExtra("Recipe", recipe)
+                val objectListener = object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
 
-//                context.startActivity(intent)
+
+
+                        val userInfo = snapshot.getValue<Users>()
+                        val intent = Intent(context, RecipeDetailsActivity::class.java)
+                        intent.putExtra("userName", userInfo)
+                        intent.putExtra("Recipe", recipe)
+
+                        context.startActivity(intent)
+                    }
+
+
+
+                    override fun onCancelled(error: DatabaseError) {
+
+
+                    }
+
+                }
+                databaseRef
+                    .child("users")
+                    .child(creatorID)
+                    .addListenerForSingleValueEvent(objectListener)
+
+
             }
-//
-//
 
         }
     }

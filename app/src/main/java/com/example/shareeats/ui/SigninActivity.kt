@@ -24,10 +24,13 @@ class SigninActivity : AppCompatActivity() {
         binding = ActivitySigninBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         viewModel = AuthenticationViewModel()
         viewModel.getStates().observe(this@SigninActivity){
             renderUi(it)
         }
+
+        viewModel.isSignedIn()
 
         with(binding){
             btnSignin.setOnClickListener {

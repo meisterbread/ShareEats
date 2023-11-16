@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        binding.btnImg.setOnClickListener {
+        binding.btnAddRecipe.setOnClickListener {
 
             CreateRecipeActivity.launch(this@MainActivity)
 
