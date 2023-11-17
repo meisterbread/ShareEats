@@ -63,11 +63,9 @@ class SignupActivity : AppCompatActivity() {
         when(state) {
             is AuthenticationStates.SignedUp -> auth.currentUser?.let {
 
-                if (binding.ivAddImage != null){
 
                     binding.ivAddImage.setImageResource(R.drawable.user_default)
 
-                }
                     val bitmap = (binding.ivAddImage.drawable as BitmapDrawable).bitmap
                     val baos = ByteArrayOutputStream()
                     bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
@@ -77,8 +75,10 @@ class SignupActivity : AppCompatActivity() {
                     auth.currentUser?.uid.toString(),
                     baos.toByteArray(),
                     binding.tieName.text.toString(),
+                    binding.tieUsername.text.toString(),
                     binding.tieEmail.text.toString(),
-                    binding.tieBio.text.toString()
+                    binding.tieBio.text.toString(),
+                    null
                 )
             }
 

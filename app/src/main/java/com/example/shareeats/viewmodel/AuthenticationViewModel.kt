@@ -3,7 +3,6 @@ package com.example.shareeats.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.shareeats.model.Recipe
 import com.example.shareeats.model.Users
 import com.example.shareeats.states.AuthenticationStates
 import com.google.firebase.auth.ktx.auth
@@ -75,17 +74,23 @@ class AuthenticationViewModel: ViewModel() {
         }
     }
 
-    fun createUserRecord(id : String,
-                         imageURL : ByteArray,
-                         name : String,
-                         email : String,
-                         bio : String,) {
+    fun createUserRecord(
+        id: String,
+        imageURL: ByteArray,
+        name: String,
+        username : String,
+        email: String,
+        bio: String,
+        favorites: List<String>?
+    ) {
         val users = Users(
             id,
             imageURL.toString(),
             name,
+            username,
             email,
-            bio
+            bio,
+            favorites
 
         )
         ref.child("users/" + auth.currentUser?.uid).setValue(users).addOnCompleteListener {

@@ -6,66 +6,67 @@
 
     <LinearLayout
         android:id="@+id/linear_parent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="351dp"
+        android:layout_height="113dp"
+        android:layout_margin="@dimen/_10sdp"
+        android:background="@drawable/shape"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
         android:weightSum="2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_margin="@dimen/_10sdp"
-        android:gravity="center_vertical"
-        android:background="@drawable/shape">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="304dp"
-            android:layout_height="145dp"
+
+        <ImageView
+            android:id="@+id/imgRecipe"
+            android:layout_width="223dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
             android:layout_weight="1"
-            android:layout_marginStart="@dimen/_5sdp"
-            app:cardCornerRadius="@dimen/_15sdp">
-
-            <ImageView
-                android:id="@+id/imgRecipe"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                android:src="@drawable/baseline_image_24" />
-        </androidx.cardview.widget.CardView>
+            android:background="@drawable/shape"
+            android:scaleType="fitCenter"
+            android:src="@drawable/baseline_image_24" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:layout_weight="1"
-            android:weightSum="3"
             android:orientation="vertical"
-            android:layout_margin="10dp">
+            android:weightSum="3">
 
             <TextView
                 android:id="@+id/tv_recipe_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="Fried Chicken"
-                android:textSize="30dp"
-                android:layout_weight="1"/>
+                android:textColor="@color/gray"
+                android:textSize="23dp" />
 
             <TextView
                 android:id="@+id/tv_cooking_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:textColor="@color/gray"
                 android:text="Cooking time : 10 mins"
-                android:textSize="15dp"
-                android:layout_weight="1" />
+                android:textSize="13dp" />
 
             <TextView
                 android:id="@+id/tv_created_by"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Created by : Jeremaiah Mata"
-                android:textSize="15dp"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:layout_weight="1"
-                android:layout_marginTop="@dimen/_10sdp"/>
+                android:textStyle="bold"
+                android:textColor="@color/base"
+                android:text="Created by : @jeremaiiiahmata"
+                android:textSize="11dp" />
 
         </LinearLayout>
 

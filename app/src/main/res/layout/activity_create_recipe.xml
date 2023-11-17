@@ -21,9 +21,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Create Recipe"
-            android:textColor="@color/secondary"
+            android:textColor="@color/gray"
             android:textSize="48dp"
-            android:fontFamily="@font/montserrat"
+            android:fontFamily="@font/montserrat_bold"
             android:textStyle="bold"
             android:layout_margin="30dp"
             android:layout_gravity="center"/>
@@ -111,8 +111,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Cancel"
-                android:backgroundTint="@color/primary"
-                android:textColor="@color/secondary"
+                android:backgroundTint="@color/secondary"
+                android:textColor="@color/base"
                 android:fontFamily="@font/montserrat_bold"
                 android:layout_weight="1"
                 android:layout_margin="10dp"/>
@@ -123,7 +123,7 @@
                 android:layout_height="wrap_content"
                 android:text="Add Recipe"
                 android:backgroundTint="@color/primary"
-                android:textColor="@color/secondary"
+                android:textColor="@color/gray"
                 android:fontFamily="@font/montserrat_bold"
                 android:layout_weight="1"
                 android:layout_margin="10dp"/>

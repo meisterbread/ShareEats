@@ -10,8 +10,6 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.shareeats.databinding.RecipeHomeListBinding
 import com.example.shareeats.model.Recipe
 import com.example.shareeats.model.Users
-import com.example.shareeats.states.HomeState
-import com.example.shareeats.ui.CreateRecipeActivity
 import com.example.shareeats.ui.MainActivity
 import com.example.shareeats.ui.RecipeDetailsActivity
 import com.google.firebase.database.DataSnapshot
@@ -20,7 +18,6 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.ktx.storage
 
 
 class HomeAdapter(private val context: MainActivity, private var recipeList: ArrayList<Recipe> )
@@ -64,7 +61,7 @@ class HomeAdapter(private val context: MainActivity, private var recipeList: Arr
                 .into(binding.imgRecipe)
 
             binding.tvRecipeName.text = recipe.name
-            binding.tvCookingTime.text = recipe.cookingTime
+            binding.tvCookingTime.text = "Cooking time : ${recipe.cookingTime}"
 
 
             var databaseRef = Firebase.database.reference
@@ -77,7 +74,7 @@ class HomeAdapter(private val context: MainActivity, private var recipeList: Arr
 
 
                     val userInfo = snapshot.getValue<Users>()
-                    binding.tvCreatedBy.text = "Created by : ${userInfo?.name}"
+                    binding.tvCreatedBy.text = "Created by : @${userInfo?.username}"
 
                 }
 

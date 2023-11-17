@@ -6,15 +6,21 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.shareeats.databinding.ActivityMainBinding
+import com.example.shareeats.model.Users
 import com.example.shareeats.states.HomeState
 import com.example.shareeats.ui.adapters.HomeAdapter
 import com.example.shareeats.viewmodel.HomeViewModel
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityMainBinding
     private lateinit var adapters: HomeAdapter
     private lateinit var mainViewModel : HomeViewModel
+
+    private var auth = Firebase.auth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -41,7 +47,11 @@ class MainActivity : AppCompatActivity() {
 
         binding.imgProfile.setOnClickListener {
 
-            ProfileActivity.launch(this@MainActivity)
+            val intent = Intent(this@MainActivity, ProfileActivity::class.java)
+            intent.putExtra("userID", auth.currentUser?.uid)
+            startActivity(intent)
+
+
 
         }
 
@@ -56,7 +66,7 @@ class MainActivity : AppCompatActivity() {
 
                 adapters = HomeAdapter(this, it.data)
                 binding.recylerviewHome.adapter = adapters
-                binding.tvSubheader.text = "What will you cook, ${it.userInfo?.name}?"
+                binding.tvSubheader.text = "What will you cook, @${it.userInfo?.username}?"
             }
 
 

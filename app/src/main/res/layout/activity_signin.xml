@@ -7,34 +7,56 @@
     android:background="@color/base"
     tools:context=".ui.SigninActivity">
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="411dp"
+        android:layout_height="126dp"
+        android:src="@drawable/share_eat_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/tv_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login"
-        android:textSize="24dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
         android:fontFamily="@font/montserrat_bold"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="Login"
+        android:textSize="42dp"
+        android:layout_marginTop="@dimen/_15sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="@dimen/_10sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+    <TextView
+        android:id="@+id/tv_subheader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:text="Please log-in to continue."
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_header" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="128dp"
-        android:layout_marginEnd="16dp"
         android:hint="Email"
-        app:layout_constraintTop_toBottomOf="@id/tv_header">
+        android:layout_marginTop="@dimen/_20sdp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="199dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_subheader">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tie_email"
             android:layout_width="match_parent"
-            android:fontFamily="@font/montserrat"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress" />
+            android:fontFamily="@font/montserrat"
+            android:inputType="textEmailAddress"
+            android:layout_margin="@dimen/_10sdp"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -42,19 +64,19 @@
         android:id="@+id/til_pass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
         android:hint="Password"
         app:passwordToggleEnabled="true"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="279dp"
         app:layout_constraintTop_toBottomOf="@id/til_email">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tie_pass"
             android:layout_width="match_parent"
-            android:fontFamily="@font/montserrat"
             android:layout_height="wrap_content"
-            android:inputType="textPassword" />
+            android:fontFamily="@font/montserrat"
+            android:inputType="textPassword"
+            android:layout_margin="@dimen/_10sdp"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -62,12 +84,15 @@
         android:id="@+id/btn_signin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
         android:fontFamily="@font/montserrat_bold"
         android:text="Sign in"
-        app:layout_constraintTop_toBottomOf="@id/til_pass" />
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="375dp"
+        app:layout_constraintBottom_toTopOf="@id/tv_signup"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:backgroundTint="@color/primary"
+        android:layout_marginBottom="@dimen/_10sdp"/>
 
     <TextView
         android:id="@+id/tv_signup"

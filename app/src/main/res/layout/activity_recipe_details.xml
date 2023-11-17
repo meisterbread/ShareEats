@@ -1,111 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/base"
-    tools:context=".ui.RecipeDetailsActivity">
+    android:layout_width="409dp"
+    android:layout_height="729dp"
+    android:fillViewport="true">
 
-
-    <ImageView
-        android:id="@+id/img_recipe"
-        android:layout_width="412dp"
-        android:layout_height="189dp"
-        android:src="@drawable/baseline_image_24"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:scaleType="centerCrop"/>
-
-    <TextView
-        android:id="@+id/tv_name"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/montserrat_bold"
-        android:text="Recipe Name"
-        android:textSize="@dimen/_24sdp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_recipe" />
+        android:background="@color/base"
+        tools:context=".ui.RecipeDetailsActivity">
 
-    <TextView
-        android:id="@+id/tv_creator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/montserrat"
-        android:text="Created by :"
-        android:textSize="@dimen/_12sdp"
-        android:layout_marginTop="5dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+        <ImageView
+            android:id="@+id/img_recipe"
+            android:layout_width="412dp"
+            android:layout_height="189dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/baseline_image_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tv_cookingtime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_15sdp"
-        android:fontFamily="@font/montserrat_bold"
-        android:text="Cooking Time : "
-        android:textSize="@dimen/_15sdp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_creator" />
+        <ImageView
+            android:id="@+id/imgArrow"
+            android:layout_width="49dp"
+            android:layout_height="43dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="16dp"
+            android:rotation="180"
+            android:scaleType="fitXY"
+            android:src="@drawable/arrow_back_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tv_ingredients"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_15sdp"
-        android:fontFamily="@font/montserrat_bold"
-        android:text="Ingredients :"
-        android:textSize="@dimen/_15sdp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_cookingtime"/>
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="@color/secondary"
+            android:text="Recipe Name"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:textSize="@dimen/_30sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_recipe" />
 
-    <ScrollView
-        android:id="@+id/tv_ingredients_scrollview"
-        android:layout_width="413dp"
-        android:layout_height="115dp"
-        android:layout_marginTop="@dimen/_10sdp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_ingredients">
+        <TextView
+            android:id="@+id/tv_creator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/montserrat"
+            android:text="Created by :"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+
+        <TextView
+            android:id="@+id/tv_cookingtime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Cooking Time : "
+            android:layout_marginStart="@dimen/_10sdp"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/_15sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_creator" />
+
+        <TextView
+            android:id="@+id/tv_ingredients"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Ingredients :"
+            android:textColor="@color/gray"
+            app:layout_goneMarginTop="@dimen/_20sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:textSize="@dimen/_15sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_cookingtime" />
 
         <TextView
             android:id="@+id/tv_ingredients_body"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginTop="16dp"
             android:fontFamily="@font/montserrat"
             android:text="@string/lorem_ipsum"
             android:textSize="@dimen/_15sdp"
+            android:padding="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_creator"/>
-    </ScrollView>
+            app:layout_constraintTop_toBottomOf="@+id/tv_ingredients" />
 
-    <TextView
-        android:id="@+id/tv_instructions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_15sdp"
-        android:fontFamily="@font/montserrat_bold"
-        android:text="Instructions :"
-        android:textSize="@dimen/_15sdp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_ingredients_scrollview"/>
+        <TextView
+            android:id="@+id/tv_instructions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="@color/secondary"
+            android:text="Instructions :"
+            android:padding="@dimen/_10sdp"
+            android:textSize="@dimen/_15sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_ingredients_body" />
 
-
-    <ScrollView
-        android:id="@+id/tv_instructions_scrollview"
-        android:layout_width="409dp"
-        android:layout_height="111dp"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:layout_marginBottom="@dimen/_10sdp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_instructions">
 
         <TextView
             android:id="@+id/tv_instructions_body"
@@ -113,39 +120,47 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_15sdp"
             android:fontFamily="@font/montserrat"
+            android:padding="@dimen/_10sdp"
             android:text="@string/lorem_ipsum"
-            android:textSize="@dimen/_15sdp"/>
-    </ScrollView>
+            android:textSize="@dimen/_15sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_instructions" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/tv_instructions_scrollview"
-        android:weightSum="3">
-
-        <Button
-            android:id="@+id/btn_cancel"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="@dimen/_9sdp"
-            android:text="Cancel"/>
-        <Button
-            android:id="@+id/btn_favorite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="@dimen/_9sdp"
-            android:text="Add to Favorites"/>
-        <Button
-            android:id="@+id/btn_version"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="@dimen/_9sdp"
-            android:text="Create New Version"/>
+            android:orientation="horizontal"
+            android:weightSum="2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_instructions_body">
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/btn_favorite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:text="Add to Favorites"
+                android:backgroundTint="@color/secondary"
+                android:fontFamily="@font/montserrat_bold"
+                android:textSize="@dimen/_9sdp"
+                android:background="@drawable/rounded_border"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <Button
+                android:id="@+id/btn_version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:backgroundTint="@color/secondary"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Create New Version"
+                android:textSize="@dimen/_9sdp"
+                android:background="@drawable/rounded_border"/>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
