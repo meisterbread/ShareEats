@@ -90,6 +90,14 @@ class CreateRecipeActivity : AppCompatActivity() {
                 binding.tieInstructions.text.toString(),
                 userID)
 
+            createRecipeViewModel.addRecipeToUser(
+                baos.toByteArray(),
+                binding.tieRecipeName.text.toString(),
+                binding.tieCookingTime.text.toString(),
+                binding.tieIngredients.text.toString(),
+                binding.tieInstructions.text.toString(),
+                userID)
+
         }
 
     }

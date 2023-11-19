@@ -64,8 +64,6 @@ class SignupActivity : AppCompatActivity() {
             is AuthenticationStates.SignedUp -> auth.currentUser?.let {
 
 
-                    binding.ivAddImage.setImageResource(R.drawable.user_default)
-
                     val bitmap = (binding.ivAddImage.drawable as BitmapDrawable).bitmap
                     val baos = ByteArrayOutputStream()
                     bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)

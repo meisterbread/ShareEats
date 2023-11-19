@@ -37,7 +37,7 @@ class SplashActivity() : AppCompatActivity(), Parcelable {
 
 
         Timer().schedule(3000) {
-            startActivity(Intent(this@SplashActivity, SigninActivity::class.java))
+            startActivity(Intent(this@SplashActivity, MainMenuActivity::class.java))
             finish()
         }
     }

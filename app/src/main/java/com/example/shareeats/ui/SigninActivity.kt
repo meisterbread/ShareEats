@@ -51,13 +51,13 @@ class SigninActivity : AppCompatActivity() {
 
     private fun renderUi(states : AuthenticationStates) {
         when(states) {
-            is AuthenticationStates.IsSignedIn -> {
-                if(states.isSignedIn) {
-                    MainActivity.launch(this@SigninActivity)
-                    finish()
-                }
-            }
-            AuthenticationStates.SignedIn -> {
+//            is AuthenticationStates.IsSignedIn -> {
+//                if(states.isSignedIn) {
+//                    MainActivity.launch(this@SigninActivity)
+//                    finish()
+//                }
+//            }
+            is AuthenticationStates.SignedIn -> {
                 MainActivity.launch(this@SigninActivity)
                 finish()
             }

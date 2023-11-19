@@ -77,15 +77,14 @@
             android:id="@+id/tv_ingredients"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginStart="@dimen/_10sdp"
             android:fontFamily="@font/montserrat_bold"
             android:text="Ingredients :"
             android:textColor="@color/gray"
-            app:layout_goneMarginTop="@dimen/_20sdp"
-            android:layout_marginStart="@dimen/_10sdp"
             android:textSize="@dimen/_15sdp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_cookingtime" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_cookingtime"
+            android:layout_marginTop="@dimen/_30sdp" />
 
         <TextView
             android:id="@+id/tv_ingredients_body"
@@ -108,7 +107,7 @@
             android:fontFamily="@font/montserrat_bold"
             android:textColor="@color/secondary"
             android:text="Instructions :"
-            android:padding="@dimen/_10sdp"
+            android:paddingLeft="@dimen/_10sdp"
             android:textSize="@dimen/_15sdp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_ingredients_body" />
@@ -120,7 +119,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_15sdp"
             android:fontFamily="@font/montserrat"
-            android:padding="@dimen/_10sdp"
+            android:background="@color/gray"
+            android:textColor="@color/base"
+            android:paddingLeft="@dimen/_10sdp"
+            android:paddingRight="@dimen/_10sdp"
             android:text="@string/lorem_ipsum"
             android:textSize="@dimen/_15sdp"
             app:layout_constraintStart_toStartOf="parent"
@@ -131,6 +133,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:background="@color/primary"
             android:weightSum="2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_instructions_body">
@@ -144,6 +147,7 @@
                 android:text="Add to Favorites"
                 android:backgroundTint="@color/secondary"
                 android:fontFamily="@font/montserrat_bold"
+                android:textColor="@color/base"
                 android:textSize="@dimen/_9sdp"
                 android:background="@drawable/rounded_border"/>
 
@@ -156,6 +160,7 @@
                 android:backgroundTint="@color/secondary"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="Create New Version"
+                android:textColor="@color/base"
                 android:textSize="@dimen/_9sdp"
                 android:background="@drawable/rounded_border"/>
 

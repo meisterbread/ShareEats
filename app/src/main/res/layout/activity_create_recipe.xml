@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="409dp"
+    android:layout_height="729dp"
+    android:fillViewport="true">
+
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/base"
     tools:context=".ui.CreateRecipeActivity">
-
 
 
     <LinearLayout
@@ -20,21 +25,21 @@
             android:id="@+id/tv_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="30dp"
+            android:fontFamily="@font/montserrat_bold"
             android:text="Create Recipe"
             android:textColor="@color/gray"
-            android:textSize="48dp"
-            android:fontFamily="@font/montserrat_bold"
-            android:textStyle="bold"
-            android:layout_margin="30dp"
-            android:layout_gravity="center"/>
+            android:textSize="45dp"
+            android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="124dp"
-            android:layout_height="111dp"
+            android:layout_width="127dp"
+            android:layout_height="122dp"
+            android:scaleType="fitXY"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_header"
-            android:scaleType="fitXY"
             app:srcCompat="@drawable/baseline_image_24"
             tools:layout_editor_absoluteY="731dp" />
 
@@ -77,7 +82,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tie_ingredients"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="149dp"
                     android:hint="Ingredients"
                     android:inputType="textEmailAddress" />
 
@@ -90,7 +95,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tie_instructions"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
+                    android:layout_height="298dp"
                     android:hint="Instructions"
                     android:inputType="textEmailAddress" />
 
@@ -131,4 +136,6 @@
 
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

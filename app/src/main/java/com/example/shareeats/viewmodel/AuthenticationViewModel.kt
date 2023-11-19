@@ -12,11 +12,13 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 class AuthenticationViewModel: ViewModel() {
 
     private val auth = Firebase.auth
     private val ref = Firebase.database.reference
+    private val storageRef = Firebase.storage.reference
     private val states = MutableLiveData<AuthenticationStates>()
 
     fun getStates(): LiveData<AuthenticationStates> = states
@@ -83,19 +85,31 @@ class AuthenticationViewModel: ViewModel() {
         bio: String,
         favorites: List<String>?
     ) {
-        val users = Users(
-            id,
-            imageURL.toString(),
-            name,
-            username,
-            email,
-            bio,
-            favorites
 
-        )
-        ref.child("users/" + auth.currentUser?.uid).setValue(users).addOnCompleteListener {
-            if(it.isSuccessful) states.value = AuthenticationStates.ProfileUpdated
-            else states.value = AuthenticationStates.Error
+        val storageRef = storageRef.child("User").child("Images").child("$name.jpg")
+
+
+        storageRef.putBytes(imageURL).addOnSuccessListener {
+
+            storageRef.downloadUrl.addOnSuccessListener {
+
+                // error in case maulit : it.toString() if bytearray, not imageURL.toString().
+
+                val users = Users(
+                    id,
+                    it.toString(),
+                    name,
+                    username,
+                    email,
+                    bio,
+                    favorites
+
+                )
+                ref.child("users/" + auth.currentUser?.uid).setValue(users).addOnCompleteListener {
+                    if (it.isSuccessful) states.value = AuthenticationStates.ProfileUpdated
+                    else states.value = AuthenticationStates.Error
+                }
+            }
         }
     }
 

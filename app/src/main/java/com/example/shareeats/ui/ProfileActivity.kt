@@ -46,6 +46,12 @@ class ProfileActivity : AppCompatActivity() {
             renderUi(it)
         }
 
+        binding.createdRecipesButton.setOnClickListener {
+
+            CreatedRecipeActivity.launch(this@ProfileActivity)
+
+        }
+
 
         binding.editBtn.setOnClickListener {
 
@@ -67,6 +73,10 @@ class ProfileActivity : AppCompatActivity() {
 
             is ProfileStates.Default -> {
 
+                Glide.with(this@ProfileActivity)
+                    .load(it.userInfo?.imageURL)
+                    .apply(RequestOptions().centerCrop().override(50, 50))
+                    .into(binding.imgProfile)
 
                 binding.nameTv.text = it.userInfo?.name
                 binding.usernameTv.text = "@${it.userInfo?.username}"
@@ -92,7 +102,7 @@ class ProfileActivity : AppCompatActivity() {
 
             is AuthenticationStates.LogOut-> {
 
-                    SigninActivity.launch(this@ProfileActivity)
+                    MainMenuActivity.launch(this@ProfileActivity)
                     finish()
 
             }

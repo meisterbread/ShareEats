@@ -96,6 +96,60 @@ class CreateRecipeViewModel : ViewModel() {
 
     }
 
+    fun addRecipeToUser(img : ByteArray,
+                  name : String,
+                  cookingTime : String,
+                  ingredients : String,
+                  instructions : String,
+                  createdBy : String) {
+
+        val userID = auth.currentUser?.uid.toString()
+
+        val id = databaseRef.key
+
+        val databaseRef = databaseRef
+                         .child("users")
+                         .child(userID)
+                         .child("created_recipes")
+                         .push()
+
+
+        val storageRef = storageRef.child("Recipe").child("Images").child("$name.jpg")
+
+
+        storageRef.putBytes(img).addOnSuccessListener {
+
+            storageRef.downloadUrl.addOnSuccessListener {
+
+
+
+                val add = Recipe(id,
+                    it.toString(),
+                    name,
+                    cookingTime,
+                    ingredients,
+                    instructions,
+                    createdBy)
+
+                databaseRef.setValue(add).addOnSuccessListener {
+
+                    createRecipeState.value = CreateRecipeState.Success
+
+                } .addOnFailureListener {
+
+                    createRecipeState.value = CreateRecipeState.Error
+
+                }
+
+            }
+
+        }
+
+
+
+
+    }
+
 
 
 }
