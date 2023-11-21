@@ -46,6 +46,7 @@ class CreatedRecipeActivity : AppCompatActivity() {
                 adapters = CreatedRecipesAdapter(this, it.data)
                 binding.recylerviewCreatedRecipes.adapter = adapters
                 binding.tvSubheader.text = "@${it.userInfo?.username}'s recipes"
+
             }
 
 

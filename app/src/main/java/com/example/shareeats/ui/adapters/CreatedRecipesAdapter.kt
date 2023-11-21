@@ -74,7 +74,7 @@ class CreatedRecipesAdapter(private val context: CreatedRecipeActivity, private 
 
 
                     val userInfo = snapshot.getValue<Users>()
-                    binding.tvCreatedBy.text = "Created by : @${userInfo?.username}"
+                    binding.tvCreatedBy.text = "Created by : @${userInfo?.name}"
 
                 }
 

@@ -31,7 +31,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="99dp"
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:orientation="vertical"
@@ -40,22 +40,22 @@
             <TextView
                 android:id="@+id/tv_recipe_name"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="51dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="Fried Chicken"
+                android:text="Honey Garlic Pork Chop"
                 android:textColor="@color/gray"
-                android:textSize="23dp" />
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/tv_cooking_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textStyle="bold"
-                android:textColor="@color/gray"
                 android:text="Cooking time : 10 mins"
-                android:textSize="13dp" />
+                android:textColor="@color/gray"
+                android:textSize="13dp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tv_created_by"
@@ -63,10 +63,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_weight="1"
-                android:textStyle="bold"
-                android:textColor="@color/base"
                 android:text="Created by : @jeremaiiiahmata"
-                android:textSize="11dp" />
+                android:textColor="@color/base"
+                android:textSize="11dp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
