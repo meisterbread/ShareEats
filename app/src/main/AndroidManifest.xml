@@ -16,6 +16,9 @@
         android:theme="@style/Theme.ShareEats"
         tools:targetApi="31">
         <activity
+            android:name=".ui.CreateRecipeVersionActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.MainMenuActivity"
             android:exported="false" />
         <activity

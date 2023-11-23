@@ -1,5 +1,7 @@
 package com.example.shareeats.ui
 
+import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bumptech.glide.Glide
@@ -58,7 +60,21 @@ class RecipeDetailsActivity : AppCompatActivity() {
         }
 
 
+        binding.btnVersion.setOnClickListener {
 
+            val intent = Intent(this@RecipeDetailsActivity, CreateRecipeVersionActivity::class.java)
+            intent.putExtra("userName", userInfo)
+            intent.putExtra("Recipe", recipe)
+            startActivity(intent)
+
+
+
+        }
+
+
+    }
+    companion object {
+        fun launch(activity : Activity) = activity.startActivity(Intent(activity, RecipeDetailsActivity::class.java))
     }
 
 }
