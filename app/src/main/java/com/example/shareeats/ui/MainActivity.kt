@@ -5,6 +5,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.example.shareeats.databinding.ActivityMainBinding
 import com.example.shareeats.model.Users
 import com.example.shareeats.states.HomeState
@@ -63,6 +65,11 @@ class MainActivity : AppCompatActivity() {
 
         when(it) {
             is HomeState.Default -> {
+
+                Glide.with(this@MainActivity)
+                    .load(it.userInfo?.imageURL)
+                    .apply(RequestOptions().centerCrop().override(250, 250))
+                    .into(binding.imgProfile)
 
                 adapters = HomeAdapter(this, it.data)
                 binding.recylerviewHome.adapter = adapters

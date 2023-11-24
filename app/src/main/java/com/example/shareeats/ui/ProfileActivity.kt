@@ -75,7 +75,7 @@ class ProfileActivity : AppCompatActivity() {
 
                 Glide.with(this@ProfileActivity)
                     .load(it.userInfo?.imageURL)
-                    .apply(RequestOptions().centerCrop().override(50, 50))
+                    .apply(RequestOptions().centerCrop().override(250, 250))
                     .into(binding.imgProfile)
 
                 binding.nameTv.text = it.userInfo?.name

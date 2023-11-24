@@ -57,7 +57,7 @@ class CreatedRecipesAdapter(private val context: CreatedRecipeActivity, private 
 
             Glide.with(context)
                 .load(recipe.imageUrl)
-                .apply(RequestOptions().centerCrop().override(50, 50))
+                .apply(RequestOptions().centerCrop().override(250, 250))
                 .into(binding.imgRecipe)
 
             binding.tvRecipeName.text = recipe.name

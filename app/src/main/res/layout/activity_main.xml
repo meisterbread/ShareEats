@@ -11,9 +11,9 @@
         android:id="@+id/linear_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_26sdp"
+        android:layout_marginStart="@dimen/_20sdp"
         android:layout_marginTop="@dimen/_10sdp"
-        android:layout_marginEnd="@dimen/_26sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -29,7 +29,7 @@
             android:textColor="@color/secondary"
             android:textSize="@dimen/_25ssp" />
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/img_profile"
             android:layout_width="56dp"
             android:layout_height="57dp"
@@ -37,7 +37,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/baseline_person_24"
+            android:src="@drawable/user_default"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:tint="@color/gray"/>
@@ -57,7 +57,8 @@
         android:textSize="@dimen/_20sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linear_header" />
+        app:layout_constraintTop_toBottomOf="@id/linear_header"
+        app:layout_constraintBottom_toTopOf="@id/recylerview_home"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recylerview_home"
