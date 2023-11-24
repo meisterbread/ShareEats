@@ -71,6 +71,15 @@ class RecipeDetailsActivity : AppCompatActivity() {
 
         }
 
+        binding.btnSeeVersion.setOnClickListener{
+
+            val intent = Intent(this@RecipeDetailsActivity, CreatedRecipeVersionsActivity::class.java)
+            intent.putExtra("userName", userInfo)
+            intent.putExtra("Recipe", recipe)
+            startActivity(intent)
+
+        }
+
 
     }
     companion object {
