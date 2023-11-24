@@ -19,69 +19,20 @@ class CreateRecipeVersionViewModel {
 
     private var auth = Firebase.auth
 
-    fun getState() : LiveData<CreateRecipeVersionState> = createRecipeVersionState
+    fun getState(): LiveData<CreateRecipeVersionState> = createRecipeVersionState
 
-    fun addRecipeToVersions(img : ByteArray,
-                            name : String,
-                            cookingTime : String,
-                            ingredients : String,
-                            instructions : String,
-                            createdBy : String,
-                            recipeID : String) {
-1
-        val databaseRef = databaseRef.child("Recipe").child(recipeID).child("Versions").push()
-        val id = databaseRef.key
+    fun addRecipeToVersions(
+        recipeID: String,
+        img: ByteArray,
+        name: String,
+        cookingTime: String,
+        ingredients: String,
+        instructions: String,
+        createdBy: String) {
 
+        val databaseVersionRef = databaseRef.child("Recipe").child(recipeID).child("Versions").push()
 
-        val storageRef = storageRef.child("Recipe").child("Images").child("$name.jpg")
-
-
-        storageRef.putBytes(img).addOnSuccessListener {
-
-            storageRef.downloadUrl.addOnSuccessListener {
-
-
-
-                val add = Recipe(id,
-                    it.toString(),
-                    name,
-                    cookingTime,
-                    ingredients,
-                    instructions,
-                    createdBy)
-
-                databaseRef.setValue(add).addOnSuccessListener {
-
-                    createRecipeVersionState.value = CreateRecipeVersionState.Success
-
-                } .addOnFailureListener {
-
-                    createRecipeVersionState.value = CreateRecipeVersionState.Error
-
-                }
-
-            }
-
-        }
-
-
-
-
-    }
-
-    fun addRecipeToUsers(img : ByteArray,
-                         name : String,
-                         cookingTime : String,
-                         ingredients : String,
-                         instructions : String,
-                         createdBy : String,
-                         recipeID : String) {
-
-        val databaseRef = databaseRef.child("users")
-            .child(auth.currentUser?.uid.toString())
-            .child("created_recipes")
-            .push()
-        val id = databaseRef.key
+        val versionID = databaseVersionRef.key
 
 
         val storageRef = storageRef.child("Recipe").child("Images").child("$name.jpg")
@@ -92,20 +43,20 @@ class CreateRecipeVersionViewModel {
             storageRef.downloadUrl.addOnSuccessListener {
 
 
-
-                val add = Recipe(id,
+                val add = Recipe(
+                    versionID,
                     it.toString(),
                     name,
                     cookingTime,
                     ingredients,
                     instructions,
-                    createdBy)
+                    createdBy
+                )
 
-                databaseRef.setValue(add).addOnSuccessListener {
+                databaseVersionRef.setValue(add).addOnSuccessListener {
 
-                    createRecipeVersionState.value = CreateRecipeVersionState.Success
 
-                } .addOnFailureListener {
+                }.addOnFailureListener {
 
                     createRecipeVersionState.value = CreateRecipeVersionState.Error
 
@@ -113,11 +64,48 @@ class CreateRecipeVersionViewModel {
 
             }
 
+
+            val databaseUsersRef = databaseRef.child("users")
+                .child(auth.currentUser?.uid.toString())
+                .child("created_recipes")
+                .push()
+
+            val recipeInUsersID = databaseUsersRef.key
+
+
+            val storageRef = storageRef.child("Recipe").child("Images").child("$name.jpg")
+
+
+            storageRef.putBytes(img).addOnSuccessListener {
+
+                storageRef.downloadUrl.addOnSuccessListener {
+
+
+                    val add = Recipe(
+                        versionID,
+                        it.toString(),
+                        name,
+                        cookingTime,
+                        ingredients,
+                        instructions,
+                        createdBy,
+                        recipeInUsersID
+                    )
+
+                    databaseUsersRef.setValue(add).addOnSuccessListener {
+
+                        createRecipeVersionState.value = CreateRecipeVersionState.Success
+
+                    }.addOnFailureListener {
+
+                        createRecipeVersionState.value = CreateRecipeVersionState.Error
+
+                    }
+
+                }
+
+            }
+
         }
-
-
-
-
     }
-
 }

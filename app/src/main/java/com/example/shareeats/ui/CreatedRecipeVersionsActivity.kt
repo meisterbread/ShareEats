@@ -56,7 +56,7 @@ class CreatedRecipeVersionsActivity : AppCompatActivity() {
 
         }
 
-        binding.imgProfile.setOnClickListener {
+        binding.btnBack.setOnClickListener {
 
             MainActivity.launch(this@CreatedRecipeVersionsActivity)
             finish()

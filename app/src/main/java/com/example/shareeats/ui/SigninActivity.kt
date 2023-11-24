@@ -11,6 +11,7 @@ import android.text.TextPaint
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.view.View
+import android.widget.Toast
 import com.example.shareeats.databinding.ActivitySigninBinding
 import com.example.shareeats.states.AuthenticationStates
 import com.example.shareeats.viewmodel.AuthenticationViewModel
@@ -34,10 +35,12 @@ class SigninActivity : AppCompatActivity() {
 
         with(binding){
             btnSignin.setOnClickListener {
-                viewModel.signIn(
-                    binding.tieEmail.text.toString(),
-                    binding.tiePass.text.toString()
-                )
+                if (checkPrompt()) {
+                    viewModel.signIn(
+                        binding.tieEmail.text.toString(),
+                        binding.tiePass.text.toString()
+                    )
+                }
             }
 
             tvSignup.apply {
@@ -85,6 +88,44 @@ class SigninActivity : AppCompatActivity() {
         return SpannableString(fullText).apply {
             setSpan(clickableSpan, startIndex, startIndex + linkText.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         }
+    }
+
+    private fun checkPrompt() : Boolean {
+
+        var errorCount = 0
+
+        if(binding.tieEmail.text.isNullOrEmpty()){
+
+            errorCount++
+            binding.tieEmail.error = "This field is required."
+
+        }
+
+        if(!binding.tieEmail.text.toString().endsWith(".com")){
+
+            errorCount++
+            binding.tieEmail.error = "Email should end with .com"
+
+        }
+
+
+        if(binding.tiePass.text.isNullOrEmpty()){
+
+            errorCount++
+            binding.tiePass.error = "This field is required."
+
+        }
+
+        if (errorCount <= 0) {
+
+            return true
+            Toast.makeText(this, "Account Successfully Created!", Toast.LENGTH_SHORT).show()
+
+        } else {
+        }
+
+        return false
+
     }
 
     companion object {

@@ -65,6 +65,13 @@ class ProfileActivity : AppCompatActivity() {
 
         }
 
+        binding.btnBack.setOnClickListener {
+
+            MainActivity.launch(this@ProfileActivity)
+            finish()
+
+        }
+
     }
 
     private fun handleState(it: ProfileStates?) {

@@ -11,6 +11,7 @@ import com.example.shareeats.databinding.RecipeHomeListBinding
 import com.example.shareeats.model.Recipe
 import com.example.shareeats.model.Users
 import com.example.shareeats.ui.CreatedRecipeActivity
+import com.example.shareeats.ui.PersonalRecipeDetailsActivity
 import com.example.shareeats.ui.RecipeDetailsActivity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -101,7 +102,7 @@ class CreatedRecipesAdapter(private val context: CreatedRecipeActivity, private 
 
 
                         val userInfo = snapshot.getValue<Users>()
-                        val intent = Intent(context, RecipeDetailsActivity::class.java)
+                        val intent = Intent(context, PersonalRecipeDetailsActivity::class.java)
                         intent.putExtra("userName", userInfo)
                         intent.putExtra("Recipe", recipe)
                         context.startActivity(intent)

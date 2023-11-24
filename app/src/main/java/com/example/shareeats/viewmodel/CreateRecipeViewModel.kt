@@ -56,8 +56,11 @@ class CreateRecipeViewModel : ViewModel() {
                   instructions : String,
                   createdBy : String) {
 
-        val databaseRef = databaseRef.child("Recipe").push()
-        val id = databaseRef.key
+        val userID = auth.currentUser?.uid.toString()
+
+        val databaseRefRecipe = databaseRef.child("Recipe").push()
+
+        val recipeID = databaseRefRecipe.key
 
 
         val storageRef = storageRef.child("Recipe").child("Images").child("$name.jpg")
@@ -69,7 +72,7 @@ class CreateRecipeViewModel : ViewModel() {
 
 
 
-                val add = Recipe(id,
+                val add = Recipe(recipeID,
                                 it.toString(),
                                 name,
                                 cookingTime,
@@ -77,9 +80,8 @@ class CreateRecipeViewModel : ViewModel() {
                                 instructions,
                                 createdBy)
 
-                databaseRef.setValue(add).addOnSuccessListener {
+                databaseRefRecipe.setValue(add).addOnSuccessListener {
 
-                    createRecipeState.value = CreateRecipeState.Success
 
                 } .addOnFailureListener {
 
@@ -89,55 +91,41 @@ class CreateRecipeViewModel : ViewModel() {
 
             }
 
-        }
+            val databaseRefUsers = databaseRef
+                .child("users")
+                .child(userID)
+                .child("created_recipes")
+                .push()
+
+            val recipeInUsersID = databaseRefUsers.key
+
+            val storageRef = storageRef.child("Recipe").child("Images").child("$name.jpg")
+
+
+            storageRef.putBytes(img).addOnSuccessListener {
+
+                storageRef.downloadUrl.addOnSuccessListener {
 
 
 
+                    val add = Recipe(recipeID,
+                        it.toString(),
+                        name,
+                        cookingTime,
+                        ingredients,
+                        instructions,
+                        createdBy,
+                        recipeInUsersID)
 
-    }
+                    databaseRefUsers.setValue(add).addOnSuccessListener {
 
-    fun addRecipeToUser(img : ByteArray,
-                  name : String,
-                  cookingTime : String,
-                  ingredients : String,
-                  instructions : String,
-                  createdBy : String) {
+                        createRecipeState.value = CreateRecipeState.Success
 
-        val userID = auth.currentUser?.uid.toString()
+                    } .addOnFailureListener {
 
-        val id = databaseRef.key
+                        createRecipeState.value = CreateRecipeState.Error
 
-        val databaseRef = databaseRef
-                         .child("users")
-                         .child(userID)
-                         .child("created_recipes")
-                         .push()
-
-
-        val storageRef = storageRef.child("Recipe").child("Images").child("$name.jpg")
-
-
-        storageRef.putBytes(img).addOnSuccessListener {
-
-            storageRef.downloadUrl.addOnSuccessListener {
-
-
-
-                val add = Recipe(id,
-                    it.toString(),
-                    name,
-                    cookingTime,
-                    ingredients,
-                    instructions,
-                    createdBy)
-
-                databaseRef.setValue(add).addOnSuccessListener {
-
-                    createRecipeState.value = CreateRecipeState.Success
-
-                } .addOnFailureListener {
-
-                    createRecipeState.value = CreateRecipeState.Error
+                    }
 
                 }
 
@@ -145,10 +133,60 @@ class CreateRecipeViewModel : ViewModel() {
 
         }
 
-
-
-
     }
+
+
+//    fun addRecipeToUser(img : ByteArray,
+//                        name : String,
+//                        cookingTime : String,
+//                        ingredients : String,
+//                        instructions : String,
+//                        createdBy : String) {
+//
+//        val userID = auth.currentUser?.uid.toString()
+//
+//        val databaseRef = databaseRef
+//                         .child("users")
+//                         .child(userID)
+//                         .child("created_recipes")
+//                         .push()
+//
+//
+//        val storageRef = storageRef.child("Recipe").child("Images").child("$name.jpg")
+//
+//
+//        storageRef.putBytes(img).addOnSuccessListener {
+//
+//            storageRef.downloadUrl.addOnSuccessListener {
+//
+//
+//
+//                val add = Recipe(id,
+//                    it.toString(),
+//                    name,
+//                    cookingTime,
+//                    ingredients,
+//                    instructions,
+//                    createdBy)
+//
+//                databaseRef.setValue(add).addOnSuccessListener {
+//
+//                    createRecipeState.value = CreateRecipeState.Success
+//
+//                } .addOnFailureListener {
+//
+//                    createRecipeState.value = CreateRecipeState.Error
+//
+//                }
+//
+//            }
+//
+//        }
+//
+//
+//
+//
+//    }
 
 
 

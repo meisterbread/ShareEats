@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.shareeats.R
@@ -36,10 +37,13 @@ class SignupActivity : AppCompatActivity() {
         }
 
         binding.btnSignup.setOnClickListener {
-            viewModel.signUp(
-                binding.tieEmail.text.toString(),
-                binding.tiePassword.text.toString(),
-            )
+
+            if (checkPrompt()) {
+                viewModel.signUp(
+                    binding.tieEmail.text.toString(),
+                    binding.tiePassword.text.toString(),
+                )
+            }
         }
 
         val galleryIntentLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult(), ActivityResultCallback {
@@ -86,6 +90,65 @@ class SignupActivity : AppCompatActivity() {
             }
             else -> {}
         }
+    }
+
+    private fun checkPrompt() : Boolean {
+
+        var errorCount = 0
+
+
+        if(binding.tieName.text.isNullOrEmpty()){
+
+            errorCount++
+            binding.tieName.error = "This field is required."
+
+        }
+
+        if(binding.tieEmail.text.isNullOrEmpty()){
+
+            errorCount++
+            binding.tieEmail.error = "This field is required."
+
+        }
+
+        if(!binding.tieEmail.text.toString().endsWith(".com")){
+
+            errorCount++
+            binding.tieEmail.error = "Email should end with .com"
+
+        }
+
+        if(binding.tieUsername.text.isNullOrEmpty()){
+
+            errorCount++
+            binding.tieUsername.error = "This field is required."
+
+        }
+
+        if(binding.tiePassword.text.isNullOrEmpty()){
+
+            errorCount++
+            binding.tiePassword.error = "This field is required."
+
+        }
+
+        if(binding.tiePassword.text.toString().length < 8){
+
+            errorCount++
+            binding.tiePassword.error = "Password must contain atleast 8 characters."
+
+        }
+
+        if (errorCount <= 0) {
+
+            return true
+            Toast.makeText(this, "Account Successfully Created!", Toast.LENGTH_SHORT).show()
+
+        } else {
+        }
+
+        return false
+
     }
 
     companion object {

@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.shareeats.R
@@ -75,28 +76,24 @@ class CreateRecipeActivity : AppCompatActivity() {
         binding.btnAdd.setOnClickListener {
 
 
-            val bitmap = (binding.imageView.drawable as BitmapDrawable).bitmap
-            val baos = ByteArrayOutputStream()
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
 
-            val userID = auth.currentUser?.uid.toString()
+            if (checkPrompt()) {
+
+                val bitmap = (binding.imageView.drawable as BitmapDrawable).bitmap
+                val baos = ByteArrayOutputStream()
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+
+                val userID = auth.currentUser?.uid.toString()
 
 
-            createRecipeViewModel.addRecipe(
-                baos.toByteArray(),
-                binding.tieRecipeName.text.toString(),
-                binding.tieCookingTime.text.toString(),
-                binding.tieIngredients.text.toString(),
-                binding.tieInstructions.text.toString(),
-                userID)
-
-            createRecipeViewModel.addRecipeToUser(
-                baos.toByteArray(),
-                binding.tieRecipeName.text.toString(),
-                binding.tieCookingTime.text.toString(),
-                binding.tieIngredients.text.toString(),
-                binding.tieInstructions.text.toString(),
-                userID)
+                createRecipeViewModel.addRecipe(
+                    baos.toByteArray(),
+                    binding.tieRecipeName.text.toString(),
+                    binding.tieCookingTime.text.toString(),
+                    binding.tieIngredients.text.toString(),
+                    binding.tieInstructions.text.toString(),
+                    userID)
+            }
 
         }
 
@@ -121,6 +118,52 @@ class CreateRecipeActivity : AppCompatActivity() {
             else -> {}
         }
 
+
+    }
+
+    private fun checkPrompt() : Boolean {
+
+        var errorCount = 0
+
+        if(binding.tieRecipeName.text.isNullOrEmpty()){
+
+            errorCount++
+            binding.tieRecipeName.error = "This field is required."
+
+        }
+
+        if(binding.tieCookingTime.text.isNullOrEmpty()){
+
+            errorCount++
+            binding.tieCookingTime.error = "This field is required."
+
+        }
+
+
+        if(binding.tieIngredients.text.isNullOrEmpty()){
+
+            errorCount++
+            binding.tieIngredients.error = "This field is required."
+
+        }
+
+        if(binding.tieInstructions.text.isNullOrEmpty()){
+
+            errorCount++
+            binding.tieInstructions.error = "This field is required."
+
+        }
+
+        if (errorCount <= 0) {
+
+            return true
+            Toast.makeText(this, "Recipe Successfully Created!", Toast.LENGTH_SHORT).show()
+
+        } else {
+            Toast.makeText(this, "Invalid input, please fix errors.", Toast.LENGTH_SHORT).show()
+        }
+
+        return false
 
     }
 

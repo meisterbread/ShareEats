@@ -34,7 +34,7 @@ class RecipeDetailsActivity : AppCompatActivity() {
 
         Glide.with(this@RecipeDetailsActivity)
             .load(recipe?.imageUrl)
-            .apply(RequestOptions().centerCrop().override(150, 150))
+            .apply(RequestOptions().centerCrop().override(2500, 2500))
             .into(binding.imgRecipe)
 
         binding.tvName.text = recipe?.name

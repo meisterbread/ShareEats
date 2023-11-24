@@ -11,6 +11,7 @@ data class Recipe(
     var cookingTime: String? = null,
     var ingredients: String? = null,
     var instructions: String? = null,
-    var createdBy : String? = null
+    var createdBy : String? = null,
+    var userCreatedID : String? = null
 
 ) : Parcelable

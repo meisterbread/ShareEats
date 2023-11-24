@@ -16,6 +16,9 @@
         android:theme="@style/Theme.ShareEats"
         tools:targetApi="31">
         <activity
+            android:name=".ui.PersonalRecipeDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.CreatedRecipeVersionsActivity"
             android:exported="false" />
         <activity
@@ -26,9 +29,6 @@
             android:exported="false" />
         <activity
             android:name=".ui.CreatedRecipeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.FavoritesActivity"
             android:exported="false" />
         <activity
             android:name=".ui.RecipeDetailsActivity"

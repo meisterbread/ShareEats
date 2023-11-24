@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import com.bumptech.glide.Glide
@@ -58,15 +59,24 @@ class EditProfileActivity : AppCompatActivity() {
 
         binding.btnSave.setOnClickListener {
 
-            val newName = binding.tieName.text.toString()
-            val newBio = binding.tieBio.text.toString()
+            if (checkPrompt()) {
 
-            val bitmap = (binding.ivProfile.drawable as BitmapDrawable).bitmap
-            val baos = ByteArrayOutputStream()
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+                val newName = binding.tieName.text.toString()
+                val newBio = binding.tieBio.text.toString()
 
-            viewModel.overrideData(baos.toByteArray(), newName, newBio)
+                val bitmap = (binding.ivProfile.drawable as BitmapDrawable).bitmap
+                val baos = ByteArrayOutputStream()
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
 
+                viewModel.overrideData(baos.toByteArray(), newName, newBio)
+            }
+
+        }
+
+        binding.btnCancel.setOnClickListener {
+
+            ProfileActivity.launch(this@EditProfileActivity)
+            finish()
 
         }
 
@@ -81,7 +91,7 @@ class EditProfileActivity : AppCompatActivity() {
 
                 Glide.with(this@EditProfileActivity)
                     .load(it.userInfo?.imageURL)
-                    .apply(RequestOptions().centerCrop().override(50, 50))
+                    .apply(RequestOptions().centerCrop().override(200, 200))
                     .into(binding.ivProfile)
 
                 binding.tieName.hint = it.userInfo?.name
@@ -108,6 +118,42 @@ class EditProfileActivity : AppCompatActivity() {
             else -> {}
         }
 
+
+    }
+
+    private fun checkPrompt() : Boolean {
+
+        var errorCount = 0
+
+        if(binding.tieName.text.isNullOrEmpty()){
+
+            errorCount++
+            binding.tieName.error = "This field is required."
+
+        }
+
+        if(binding.tieBio.text.isNullOrEmpty()){
+
+            errorCount++
+            binding.tieBio.error = "This field is required."
+
+        }
+
+
+        if (errorCount <= 0) {
+
+            return true
+            Toast.makeText(this, "Profile Edit Success.", Toast.LENGTH_SHORT).show()
+
+        }
+        else
+
+        {
+
+
+        }
+
+        return false
 
     }
 

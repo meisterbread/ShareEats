@@ -35,6 +35,13 @@ class CreatedRecipeActivity : AppCompatActivity() {
 
         }
 
+        binding.imgProfile.setOnClickListener {
+
+            MainActivity.launch(this@CreatedRecipeActivity)
+            finish()
+
+        }
+
 
     }
 
