@@ -7,9 +7,13 @@ import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.SpannableStringBuilder
 import android.widget.Toast
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.example.shareeats.R
 import com.example.shareeats.databinding.ActivityCreateRecipeVersionBinding
 import com.example.shareeats.databinding.ActivityCreatedRecipeBinding
@@ -52,6 +56,7 @@ class CreateRecipeVersionActivity : AppCompatActivity() {
 
         }
 
+
         val galleryIntentLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult(), ActivityResultCallback {
             if(it.resultCode == RESULT_OK){
                 val imageUri = it.data?.data
@@ -68,6 +73,16 @@ class CreateRecipeVersionActivity : AppCompatActivity() {
             intent.type = "image/*"
             galleryIntentLauncher.launch(intent)
         }
+
+        Glide.with(this@CreateRecipeVersionActivity)
+            .load(recipe?.imageUrl)
+            .apply(RequestOptions().centerCrop().override(200, 200))
+            .into(binding.imageView)
+
+        binding.tieRecipeName.setText(recipe?.name)
+        binding.tieCookingTime.setText(recipe?.cookingTime)
+        binding.tieIngredients.setText(recipe?.ingredients)
+        binding.tieInstructions.setText(recipe?.instructions)
 
 
         binding.btnAdd.setOnClickListener {

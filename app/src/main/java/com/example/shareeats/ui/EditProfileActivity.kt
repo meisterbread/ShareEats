@@ -94,8 +94,8 @@ class EditProfileActivity : AppCompatActivity() {
                     .apply(RequestOptions().centerCrop().override(200, 200))
                     .into(binding.ivProfile)
 
-                binding.tieName.hint = it.userInfo?.name
-                binding.tieBio.hint = it.userInfo?.bio
+                binding.tieName.setText(it.userInfo?.name)
+                binding.tieBio.setText(it.userInfo?.bio)
 
 
 
